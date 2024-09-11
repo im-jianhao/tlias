@@ -1,6 +1,6 @@
 package com.example.service.impl;
 
-import com.example.dao.impl.DeptDaoImpl;
+import com.example.mapper.DeptMapper;
 import com.example.pojo.Dept;
 import com.example.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,19 +17,34 @@ import java.util.stream.Collectors;
 public class DeptServiceImpl implements DeptService {
 
     @Autowired
-    private DeptDaoImpl deptDao;
+    private DeptMapper deptMapper;
 
-    public List<Dept> list() throws IOException {
-        //获取原始数据
-        List<String> list = deptDao.list();
-        //组装Dept
-        List<Dept> deptList = list.stream().map(line -> {
-            String[] split = line.split(",");
-            Integer id = Integer.parseInt(split[0]);
-            LocalDateTime localDateTime = LocalDateTime.parse(split[2], DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            return Dept.builder().id(id).name(split[1]).updateTime(localDateTime).build();
-        }).collect(Collectors.toList());
+    public List<Dept> list() {
+        // 获取部门数据
+        return deptMapper.findAll();
+    }
 
-        return deptList;
+    @Override
+    public void deleteById(Integer id) {
+        deptMapper.deleteById(id);
+    }
+
+    @Override
+    public void insert(Dept dept) {
+        dept.setCreateTime(LocalDateTime.now());
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.insert(dept);
+    }
+
+    @Override
+    public Dept getById(Integer id) {
+        Dept dept = deptMapper.getById(id);
+        return dept;
+    }
+
+    @Override
+    public void update(Dept dept) {
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.update(dept);
     }
 }
