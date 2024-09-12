@@ -11,7 +11,7 @@ public interface DeptMapper {
     // @Results({@Result(column = "create_time", property = "createTime"), @Result(column = "update_time", property = "updateTime")})
     // @Select("select id, name, create_time as createTime, update_time as updateTime from dept")
     @Select("select id, name, create_time , update_time from dept")
-    public List<Dept> findAll();
+    List<Dept> findAll();
 
     @Delete("delete from dept where id = #{id}")
     void deleteById(Integer id);

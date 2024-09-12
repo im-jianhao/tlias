@@ -4,9 +4,10 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-public class  Emp {
+public class Emp {
     private Integer id; // 主键
     private String username; // 用户名
     private String password; // 密码
@@ -22,4 +23,7 @@ public class  Emp {
     private LocalDateTime updateTime; // 修改时间
 
     private String deptName; // 关联的部门名称
+
+    //员工个人经历
+    private List<EmpExpr> exprList;
 }

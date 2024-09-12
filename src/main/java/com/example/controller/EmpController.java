@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.pojo.Emp;
 import com.example.pojo.EmpQueryParam;
 import com.example.pojo.PageBean;
 import com.example.pojo.Result;
@@ -8,10 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 
@@ -28,5 +27,12 @@ public class EmpController {
         log.info("分页参数：{}", empQueryParam);
         PageBean pageBean = empService.query(empQueryParam);
         return Result.success(pageBean);
+    }
+
+    @PostMapping
+    public Result add(@RequestBody Emp emp) {
+        log.info("员工新增参数：{}", emp);
+        empService.add(emp);
+        return Result.success();
     }
 }
