@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: tlias
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: JDBC:mysql://localhost:3306/tlias?serverTimezone=UTC&useSSL=false
+    username: root
+    password: root
+  servlet:
+    multipart:
+      max-file-size: 10MB #修改上传文件大小
+      max-request-size: 100MB #修改上传文件总大小
+#mybatis开启日志
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true #mybatis驼峰
+#开启Spring事务日志级别为debug
+logging:
+  level.org.springframework.jdbc.support.JdbcTransactionManager: debug
+#阿里云OSS
+alioss:
+  endpoint: https://oss-cn-beijing.aliyuncs.com
+  access-key-id: xx
+  access-key-secret: xx
+  bucket-name: jh-sky-take-out
