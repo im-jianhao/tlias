@@ -21,6 +21,6 @@ logging:
 #阿里云OSS
 alioss:
   endpoint: https://oss-cn-beijing.aliyuncs.com
-  access-key-id: xx
-  access-key-secret: xx
+  access-key-id: XXX
+  access-key-secret: XXX
   bucket-name: jh-sky-take-out
